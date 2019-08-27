@@ -1,0 +1,14 @@
+Value INTF (Ethernet\d+/\d+)
+Value LINE ((up|down))
+Value ADMIN ((up|down))
+Value MAC ([a-f0-9]{4}\.[a-f0-9]{4}\.[a-f0-9]{4})
+Value MTU (\d+)
+Value DUPLEX (\S+-duplex)
+Value SPEED (\d+ [KMG]b/s)
+
+Start
+  ^${INTF} is ${LINE}
+  ^admin state is ${ADMIN}
+  ^\s+Hardware:\s+Ethernet,\s+address: ${MAC}
+  ^\s+MTU ${MTU}
+  ^\s+${DUPLEX}, ${SPEED} -> Record

@@ -1,0 +1,12 @@
+Value PORT (\S+)
+Value STATUS (\S+)
+Value VLAN (\d+)
+Value DUPLEX (\S+)
+Value SPEED (\S+)
+Value TYPE (\S+)
+
+Start
+  ^Port.*Type\s*$$ -> Ports
+
+Ports
+  ^${PORT}\s+${STATUS}\s+${VLAN}\s+${DUPLEX}\s+${SPEED}\s+${TYPE}\s*$$$$ -> Record

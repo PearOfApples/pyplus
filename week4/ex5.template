@@ -1,0 +1,10 @@
+Value DEVICE (\S+)
+Value INTF (Eth\d+/\d+)
+Value CAP ([RBTCWPSO]+)
+Value ID (Eth\d+/\d+)
+
+Start
+  ^Device ID.*Port ID\s*$$ -> LLDP
+
+LLDP
+  ^${DEVICE}\s+${INTF}\s+\d+\s+${CAP}\s+${ID} -> Record

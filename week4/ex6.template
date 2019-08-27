@@ -1,0 +1,15 @@
+Value Filldown LOC_AS (\d+)
+Value Filldown ID (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})
+Value NEIGHBOR (\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})
+Value AS (\d+)
+Value TIME (((\d[a-z])+|never))
+Value PFX ((\d+|Active|Idle))
+
+Start
+  ^BGP router identifier ${ID}, local AS number ${LOC_AS}
+  ^Neighbor.*State/PfxRcd\s*$$ -> BGP
+
+BGP
+  ^${NEIGHBOR}\s+\d+\s+${AS}\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+${TIME}\s+${PFX} -> Record
+
+EOF
