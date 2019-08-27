@@ -1,0 +1,16 @@
+vrf definition {{ name }}
+  rd {{ rd }}
+  {%- if ipv4 is defined %}
+  !
+  address-family ipv4
+    route-target export {{ rd }}
+    route-target import {{ rd }}
+  exit-address-family
+  {%- endif %}
+  {%- if ipv6 is defined %}
+  !
+  address-family ipv6
+    route-target export {{ rd }}
+    route-target import {{ rd }}
+  exit-address-family
+  {%- endif %} 
